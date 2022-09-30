@@ -12,9 +12,6 @@ def main():
     graphics = Graphics(settings.WINDOW_SIZE)
     running = True
     arena =  Arena(settings.ARENA_SIZE)
-    arena.register_event(player.MovementEvent, player.on_movement_event)
-    arena.create_player((50.0, (settings.ARENA_SIZE[1] - settings.PLAYER_SIZE[1]) / 2), settings.PLAYER_SIZE)
-    arena.create_player((settings.ARENA_SIZE[0] - 50.0 - settings.PLAYER_SIZE[0], (settings.ARENA_SIZE[1] - settings.PLAYER_SIZE[1]) / 2), settings.PLAYER_SIZE)
     event = SDL_Event()
     new_time = old_time = time.process_time_ns()
 
@@ -27,7 +24,6 @@ def main():
         dt = (new_time - old_time) / 1000000000
         old_time = new_time
         arena.handle_player_input(dt)
-        arena.handle_events()
         arena.render(graphics)
         graphics.present()
 
